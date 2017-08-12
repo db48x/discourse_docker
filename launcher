@@ -253,7 +253,7 @@ RUBY
 
 set_volumes() {
   local volopts=
-  if selinuxenabled; then
+  if [[ -x selinuxenabled ]] && selinuxenabled; then
       volopts=":Z"
   fi
   volumes=`cat $config_file | $docker_path run $user_args --rm -i -a stdout -a stdin $image ruby -e \
